@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/310.22d51a69.chunk.css","mappings":"AAAA,WAEI,WAAY,CACZ,iBAAkB,CAFlB,UAGJ,CAEA,SACI,gBAAJ,CAGA,UACI,WADJ","sources":["pages/login/login.less"],"sourcesContent":[".login-box {\n    width: 100%;\n    height: 100%;\n    margin: 200px auto;\n}\n\n.btn-box {\n    margin-left: 10px;\n}\n\n.form-box {\n    margin: auto;\n}"],"names":[],"sourceRoot":""}
