@@ -1,130 +1,84 @@
-import { Button, Form, Input, Select } from 'antd';
-// import { hashHistory  } from "react-router-dom";
-// import { hashHistory } from 'react-router'
-// import { props } from 'react'
+import { Button, Form, Input } from 'antd';
 import "./login.less"
-const { Option } = Select;
 const layout = {
     labelCol: {
-        span: 8,
+        flex: '110px',
     },
+
     wrapperCol: {
         span: 16,
     },
 };
 const tailLayout = {
     wrapperCol: {
-        offset: 8,
-        span: 16,
+        // offset: 8,
+        // span: 16,
     },
 };
 const Login = (props) => {
     const [form] = Form.useForm();
     const onSubmit = () => {
-        props.history.push("/home")
+        form.validateFields().then((values) => {
+            console.log(values)
+            if(values){
+                props.history.push("/home")
+            }
+           
+        })
     }
-    const onGenderChange = (value) => {
-        switch (value) {
-            case 'male':
-                form.setFieldsValue({
-                    note: 'Hi, man!',
-                });
-                break;
-            case 'female':
-                form.setFieldsValue({
-                    note: 'Hi, lady!',
-                });
-                break;
-            case 'other':
-                form.setFieldsValue({
-                    note: 'Hi there!',
-                });
-                break;
-            default:
-        }
-    };
     const onFinish = (values) => {
-        console.log(values);
+
     };
     const onReset = () => {
         form.resetFields();
     };
-    const onFill = () => {
-        form.setFieldsValue({
-            note: 'Hello world!',
-            gender: 'male',
-        });
-    };
+    const onFinishFailed = (errorInfo) => {
+        console.log('Failed:', errorInfo)
+    }
     return (
-        <div class='login-box'>
+        <div className='login-box'>
             <Form
+                className='form-box'
                 {...layout}
                 form={form}
                 name="control-hooks"
                 onFinish={onFinish}
+                initialValues={{
+                    remember: true,
+                }}
+                onFinishFailed={onFinishFailed}
                 style={{
                     maxWidth: 600,
                 }}
             >
                 <Form.Item
                     name="note"
-                    label="Note"
+                    label="用户名"
                     rules={[
                         {
                             required: true,
+                            message: '请输入你的用户名'
                         },
                     ]}
                 >
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    name="gender"
-                    label="Gender"
+                    name="password"
+                    label="密码"
                     rules={[
-                        {
-                            required: true,
-                        },
+
+                        { required: true, message: '请输入你的密码' },
                     ]}
                 >
-                    <Select
-                        placeholder="Select a option and change input text above"
-                        onChange={onGenderChange}
-                        allowClear
-                    >
-                        <Option value="male">male</Option>
-                        <Option value="female">female</Option>
-                        <Option value="other">other</Option>
-                    </Select>
-                </Form.Item>
-                <Form.Item
-                    noStyle
-                    shouldUpdate={(prevValues, currentValues) => prevValues.gender !== currentValues.gender}
-                >
-                    {({ getFieldValue }) =>
-                        getFieldValue('gender') === 'other' ? (
-                            <Form.Item
-                                name="customizeGender"
-                                label="Customize Gender"
-                                rules={[
-                                    {
-                                        required: true,
-                                    },
-                                ]}
-                            >
-                                <Input />
-                            </Form.Item>
-                        ) : null
-                    }
+                    <Input.Password />
                 </Form.Item>
                 <Form.Item {...tailLayout}>
-                    <Button type="primary" htmlType="submit" onClick={onSubmit}>
-                        Submit
+                    <Button type="primary" onClick={onSubmit}>
+                        登录
                     </Button>
-                    <Button htmlType="button" onClick={onReset}>
-                        Reset
-                    </Button>
-                    <Button type="link" htmlType="button" onClick={onFill}>
-                        Fill form
+                    <Button className='btn-box' onClick={onReset}>
+                        重置
                     </Button>
                 </Form.Item>
             </Form>

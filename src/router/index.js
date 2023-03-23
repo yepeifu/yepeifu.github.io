@@ -13,7 +13,12 @@ const routes = [
         path: '/home',
         component: Home,
         routes: [
-            { path: '/form', component: HomeForm },
+            {
+                path: '/home',
+                exact: true,
+                render: () => <Redirect to="/home/form" />,
+            },
+            { path: '/home/form', component: HomeForm },
         ]
     }
 ]
