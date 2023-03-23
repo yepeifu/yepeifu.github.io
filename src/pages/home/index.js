@@ -33,7 +33,7 @@ const leftNav = [
 ]
 
 const defaultSelectedKeys = ['11']
-const defaultSelectedKeysE = ['31']
+const defaultSelectedKeysE = ['/home/form']
 const openKeys = ['21']
 const LayoutPage = (props) => {
     const { route } = props
