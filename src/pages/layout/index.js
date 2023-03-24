@@ -1,5 +1,5 @@
-import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu, theme, Skeleton } from 'antd';
+
+import { Layout, Menu, theme, Skeleton } from 'antd';
 import React, { useEffect, Suspense, useState } from 'react';
 import { HashRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config'
@@ -60,8 +60,8 @@ const LayoutPage = (props) => {
     const handleClickMenu = (e) => {
         console.log(e)
         let leftNav = []
-        leftNavAll.map(item => {
-            if (e.key == item.parentId) {
+        leftNavAll.forEach(item => {
+            if (e.key === item.parentId) {
                 leftNav.push(item)
             }
         })
