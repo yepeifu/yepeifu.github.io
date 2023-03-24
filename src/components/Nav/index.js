@@ -5,6 +5,7 @@ const breadcrumbNameMap = {//跟路由路径保持一致
     "/": "一级菜单",
     "/home": "二级菜单",
     "/home/form": "三级菜单1",
+    "/home/table": "三级菜单2"
 };
 
 const Nav = withRouter((props) => {

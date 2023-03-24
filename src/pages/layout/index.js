@@ -9,6 +9,9 @@ const { Header, Content, Sider } = Layout;
 const topNav = [
     {
         label: "一级菜单", key: "11"
+    },
+    {
+        label: "一级菜单2", key: "221"
     }
 ]
 const leftNav = [
@@ -17,7 +20,7 @@ const leftNav = [
         key: "21",
         children: [
             { label: "三级菜单1", key: "/home/form", },
-            { label: "三级菜单2", key: "32" },
+            { label: "三级菜单2", key: "/home/table" },
             { label: "三级菜单3", key: "33" }
         ]
     },
