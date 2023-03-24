@@ -1,6 +1,6 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-const Home = React.lazy(() => import('@/pages/home'))
+const Layout = React.lazy(() => import('@/pages/layout'))
 const Login = React.lazy(() => import('@/pages/login'))
 const HomeForm = React.lazy(() => import('@/pages/home/homeForm'))
 const routes = [
@@ -11,7 +11,7 @@ const routes = [
     },
     {
         path: '/home',
-        component: Home,
+        component: Layout,
         routes: [
             {
                 path: '/home',
