@@ -1,44 +1,38 @@
 import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme, Skeleton } from 'antd';
-import React, { useEffect, Suspense } from 'react';
+import React, { useEffect, Suspense, useState } from 'react';
 import { HashRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config'
 import "./Layout.less"
 import Nav from "@/components/Nav"; //面包屑导航组件
-const { Header, Content, Sider } = Layout;
-const topNav = [
-    {
-        label: "一级菜单", key: "11"
-    },
-    {
-        label: "一级菜单2", key: "221"
-    }
-]
-const leftNav = [
-    {
-        label: "二级菜单1",
-        key: "21",
-        children: [
-            { label: "三级菜单1", key: "/home/form", },
-            { label: "三级菜单2", key: "/home/table" },
-            { label: "三级菜单3", key: "33" }
-        ]
-    },
-    {
-        label: "二级菜单2",
-        key: "212",
-        children: [
-            { label: "三级菜单12", key: "312" },
-            { label: "三级菜单22", key: "322" },
-            { label: "三级菜单32", key: "332" }
-        ]
-    },
-]
-const defaultSelectedKeys = ['11']
-const defaultSelectedKeysE = ['/home/form']
-const openKeys = ['21']
+import * as navInfo from "./path"
+
 const LayoutPage = (props) => {
     const { route } = props
+    const { Header, Content, Sider } = Layout;
+    // 一级菜单
+    const topNav = navInfo.topNav
+    // 二三级菜单
+    const leftNavAll = navInfo.leftNavAll
+    // 默认选择一级菜单
+    const defaultSelectedKeys = ['/home']
+    // 默认选择三级菜单
+
+    const defaultSelectedKeysE = ['/home/form']
+    // 默认展开二级菜单
+    const openKeys = ['/home']
+    const [leftNav, setLeftNav] = useState([
+        {
+            label: "ant-design",
+            key: "/home",
+            parentId: "/home",
+            children: [
+                { label: "ant-form", key: "/home/form", },
+                { label: "ant-table", key: "/home/table" },
+
+            ]
+        },
+    ])
     // 添加默认歌曲ID(本地存储默认歌曲id)
     useEffect(() => {
         console.log('初始化')
@@ -55,19 +49,34 @@ const LayoutPage = (props) => {
     const {
         token: { colorBgContainer },
     } = theme.useToken();
+    // 三级菜单点击事件
     const handleClick = (e) => {
         props.history.push(e.key)
-
     }
     const onOpenChange = (keys) => {
         console.log(keys)
-
+    }
+    // 一级菜单点击事件
+    const handleClickMenu = (e) => {
+        console.log(e)
+        let leftNav = []
+        leftNavAll.map(item => {
+            if (e.key == item.parentId) {
+                leftNav.push(item)
+            }
+        })
+        setLeftNav(leftNav)
+        props.history.push(e.key)
     }
     return (
         <Layout>
             <Header className="header">
                 <div className="logo" />
-                <Menu theme="dark" mode="horizontal" defaultSelectedKeys={defaultSelectedKeys} items={topNav} />
+                <Menu theme="dark"
+                    mode="horizontal"
+                    defaultSelectedKeys={defaultSelectedKeys}
+                    items={topNav}
+                    onClick={handleClickMenu} />
             </Header>
             <Layout>
                 <Sider

@@ -4,6 +4,7 @@ const Layout = React.lazy(() => import('@/pages/layout'))
 const Login = React.lazy(() => import('@/pages/login'))
 const HomeForm = React.lazy(() => import('@/pages/home/homeForm'))
 const HomeTable = React.lazy(() => import('@/pages/home/homeTable'))
+const ByValue = React.lazy(() => import('@/pages/byValue'))
 const routes = [
     { path: '/', exact: true, render: () => <Redirect to="/login" /> },
     {
@@ -11,7 +12,7 @@ const routes = [
         component: Login,
     },
     {
-        path: '/home',
+        path: '/',
         component: Layout,
         routes: [
             {
@@ -21,6 +22,13 @@ const routes = [
             },
             { path: '/home/form', component: HomeForm },
             { path: '/home/table', component: HomeTable },
+            { path: '/home/table', component: HomeTable },
+            {
+                path: '/byValue',
+                exact: true,
+                render: () => <Redirect to="/byValue/components" />,
+            },
+            { path: '/byValue/components', component: ByValue },
         ]
     }
 ]
