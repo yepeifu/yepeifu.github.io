@@ -4,7 +4,7 @@ import React, { useEffect, Suspense, useState } from 'react';
 import { HashRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config'
 import "./Layout.less"
-import Nav from "@/components/Nav"; //面包屑导航组件
+import Nav from "@/components/Nav"; // 面包屑导航组件
 import * as navInfo from "./path"
 
 const LayoutPage = (props) => {
@@ -29,7 +29,8 @@ const LayoutPage = (props) => {
             children: [
                 { label: "ant-form", key: "/home/form", },
                 { label: "ant-table", key: "/home/table" },
-
+                { label: "ant-starknet", key: "/home/starknet" },
+                // { path: '/home/starknet', component: Starknet },
             ]
         },
     ])

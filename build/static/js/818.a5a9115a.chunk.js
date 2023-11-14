@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkyepeifu_github_io=self.webpackChunkyepeifu_github_io||[]).push([[818],{3818:function(e,i,u){u.r(i);var n=u(184);i.default=function(){return(0,n.jsx)("div",{className:"login-box",children:"HomeTable"})}}}]);
-//# sourceMappingURL=818.a5a9115a.chunk.js.map
